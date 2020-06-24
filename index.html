@@ -1,0 +1,64 @@
+<script>
+    function computerPlay()
+    {
+        let play = ["rock","paper","scissors"]
+        //It can't be equal to three
+        return play[Math.floor((Math.random() * 3) + 0)]
+    }
+    function playRound(playerSelection, computerSelection)
+    {
+        let result;
+        playerSelection = playerSelection.toLowerCase()
+        if (playerSelection == computerSelection)
+        {
+            result = "It's a draw! You both choosed " + playerSelection
+            return result;
+        }
+        if (playerSelection == "rock")
+        {
+            if(computerSelection == "scissors") result = "You Win! "+ playerSelection +" beats " + computerSelection
+            if(computerSelection == "paper") result = "You Lose! "+ playerSelection +" loses against " + computerSelection
+        }
+        if (playerSelection == "paper")
+        {
+            if(computerSelection == "rock") result = "You Win! "+ playerSelection +" beats " + computerSelection
+            if(computerSelection == "scissors") result = "You Lose! "+ playerSelection +" loses against " + computerSelection
+        }
+        if (playerSelection == "scissors")
+        {
+            if(computerSelection == "paper") result = "You Win! "+ playerSelection +" beats " + computerSelection
+            if(computerSelection == "rock") result = "You Lose! "+ playerSelection +" loses against " + computerSelection
+        }
+        return result;
+    }
+
+    function game()
+    {
+        alert("Welcome to Rock-Paper-Scissor Game! It's a five round game. Good Luck !")
+        let playerScore=0;
+        let computerScore=0;
+        for (let i = 0; i < 5; i++)
+        {
+            playerSelection = prompt("Your Selection (Round "+ (i+1) +"):")
+            computerSelection = computerPlay()
+            result = playRound(playerSelection, computerSelection)
+            if (!result.search("It's a"))
+            {
+                computerScore++
+                playerScore++
+            }
+            else if (!result.search("You W"))
+            {
+                playerScore++
+            }
+            else
+            {
+                computerScore++
+            }
+            console.log(result)
+            console.log("Score: You " + playerScore +"-" + computerScore + " Computer")
+        }
+        alert("Game Over ! \nScore: You " + playerScore +"-" + computerScore + " Computer")
+    }
+    game()
+</script>
